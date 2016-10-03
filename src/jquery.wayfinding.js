@@ -898,7 +898,7 @@
 			width = Math.ceil(width / 2) * 2;
 
 			// if ($(el).css('padding-bottom') === '' || $(el).css('padding-bottom') === '0px') {
-				$(el).css('padding-bottom', (100 * (height / width)) + '%');
+				//$(el).css('padding-bottom', (100 * (height / width)) + '%');
 
 				svg.attr('height', '100%')
 					.attr('width', '100%')
