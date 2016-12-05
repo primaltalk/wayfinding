@@ -888,22 +888,11 @@
 		}
 
 		function cleanupSVG(el) { // should only be called once instead of twice if initalize and build for non datastore
-			var svg = $(el).find('svg'),
-				height = parseInt($(svg).attr('height').replace('px', '').split('.')[0], 10),
-				width = parseInt($(svg).attr('width').replace('px', '').split('.')[0], 10);
-
-			// Ensure SVG w/h are divisble by 2 (to avoid webkit blurriness bug on pan/zoom)
-			// might need to shift this change to the enclosing element for responsive svgs?
-			height = Math.ceil(height / 2) * 2;
-			width = Math.ceil(width / 2) * 2;
-
-			// if ($(el).css('padding-bottom') === '' || $(el).css('padding-bottom') === '0px') {
-				//$(el).css('padding-bottom', (100 * (height / width)) + '%');
-
-				svg.attr('height', '100%')
-					.attr('width', '100%')
-					.attr('preserveAspectRatio', 'xMinYMin meet');
-			// }
+			var svg = $(el).find('svg');
+      
+      svg.attr('height', '100%')
+        .attr('width', '100%')
+        .attr('preserveAspectRatio', 'xMinYMin meet');
 
 			// clean up after illustrator -> svg issues
 			$('#Rooms a, #Doors line', el).each(function () {
