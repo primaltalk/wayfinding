@@ -1242,7 +1242,7 @@
 				// get accessibleRoute option -- options.accessibleRoute
 
 				//highlight the destination room
-				$('#Rooms a[id="' + destination + '"] g', obj).attr('class', 'wayfindingRoom');
+				//$('#Rooms a[id="' + destination + '"] g', obj).attr('class', 'wayfindingRoom');
 				setEndPoint(options.endpoint, el);
 
 				solution = getShortestRoute();
