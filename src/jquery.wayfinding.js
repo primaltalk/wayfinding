@@ -825,11 +825,14 @@
 
 			//clears locationIndicators from the maps
 			$('g.destinationPin', el).remove();
-
+      
 			if (options.showLocation) {
 				end = $('#Doors #' + escapeSelector(endPoint), el);
 
-				attachPinLocation = $('svg').has('#Rooms a[id="' + escapeSelector(endPoint) + '"]');
+				//attachPinLocation = $('svg').has('#Rooms a[id="' + escapeSelector(endPoint) + '"]');
+        var endMap = el.children().has($('#' + escapeSelector(endPoint)));
+        attachPinLocation = $('svg', endMap).children().first();
+        
 				if (end.length) {
 					x = (Number(end.attr('x1')) + Number(end.attr('x2'))) / 2;
 					y = (Number(end.attr('y1')) + Number(end.attr('y2'))) / 2;
@@ -1140,7 +1143,7 @@
 			pathRect = path.getBBox();
 			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset ' + animationDuration + 'ms linear';
 			path.style.strokeDashoffset = '0';
-
+      
 			// If this is the last segment, trigger the 'wayfinding:animationComplete' event
 			// when it finishes drawing.
 			// If we're using zoomToRoute however, don't trigger here, trigger when zoomOut is complete (see below)
