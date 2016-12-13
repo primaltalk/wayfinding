@@ -968,48 +968,50 @@
 
 			$(el).height(height); // preserve height as I'm not yet set switching
 
-			$('div', el).hide();
+      $(el).trigger('wayfinding:floorChanged', { mapId: floor });
 
-			$('#' + floor, el).show(0, function() {
-				$(el).trigger('wayfinding:floorChanged', { mapId: floor });
-			});
+      $('div', el).hide()
 
-			//turn floor into mapNum, look for that in drawing
-			// if there get drawing[level].routeLength and use that.
+      $('#' + floor, el).fadeIn(200, function() {
 
-			var i, level, mapNum, pathLength;
+        //turn floor into mapNum, look for that in drawing
+        // if there get drawing[level].routeLength and use that.
 
-			if (drawing) {
-				mapNum = -1;
+        var i, level, mapNum, pathLength;
 
-				for (i = 0; i < maps.length; i++) {
-					if (maps[i] === floor) {
-						mapNum = i;
-						break;
-					}
-				}
+        if (drawing) {
+          mapNum = -1;
 
-				level = -1;
+          for (i = 0; i < maps.length; i++) {
+            if (maps[i].id === floor) {
+              mapNum = i;
+              break;
+            }
+          }
 
-				for (i = 0; i < drawing.length; i++) {
-					if (drawing[i].floor === mapNum) {
-						level = i;
-						break;
-					}
-				}
+          level = -1;
 
-				if (level !== -1) {
-					pathLength = drawing[level].routeLength;
+          for (i = 0; i < drawing.length; i++) {
+            if (drawing[i][0].floor === mapNum) {
+              level = i;
+              break;
+            }
+          }
 
-					// these next three are potentially redundant now
-					$(drawing[level].path, el).attr('stroke-dasharray', [pathLength, pathLength]);
-					$(drawing[level].path, el).attr('stroke-dashoffset', pathLength);
-					$(drawing[level].path, el).attr('pathLength', pathLength);
-					$(drawing[level].path, el).attr('stroke-dashoffset', pathLength);
+          if (level !== -1) {
+            pathLength = drawing[level].routeLength;
 
-					$(drawing[level].path, el).animate({svgStrokeDashOffset: 0}, pathLength * options.path.speed); //or move minPath to global variable?
-				}
-			}
+            // these next three are potentially redundant now
+            $(drawing[level].path, el).attr('stroke-dasharray', [pathLength, pathLength]);
+            $(drawing[level].path, el).attr('stroke-dashoffset', pathLength);
+            $(drawing[level].path, el).attr('pathLength', pathLength);
+            $(drawing[level].path, el).attr('stroke-dashoffset', pathLength);
+
+            $(drawing[level].path, el).animate({svgStrokeDashOffset: 0}, pathLength * options.path.speed); //or move minPath to global variable?
+          }
+        }
+      });
+
 		} //function switchFloor
 
 		function hidePath(el) {
@@ -1141,7 +1143,7 @@
 			path.style.strokeDasharray = drawLength + ' ' + drawLength;
 			path.style.strokeDashoffset = drawLength;
 			pathRect = path.getBBox();
-			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset ' + animationDuration + 'ms linear';
+			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset ' + animationDuration + 'ms ease';
 			path.style.strokeDashoffset = '0';
       
 			// If this is the last segment, trigger the 'wayfinding:animationComplete' event
