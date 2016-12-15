@@ -1002,12 +1002,14 @@
             pathLength = drawing[level].routeLength;
 
             // these next three are potentially redundant now
+            /*
             $(drawing[level].path, el).attr('stroke-dasharray', [pathLength, pathLength]);
             $(drawing[level].path, el).attr('stroke-dashoffset', pathLength);
             $(drawing[level].path, el).attr('pathLength', pathLength);
             $(drawing[level].path, el).attr('stroke-dashoffset', pathLength);
 
             $(drawing[level].path, el).animate({svgStrokeDashOffset: 0}, pathLength * options.path.speed); //or move minPath to global variable?
+            */
           }
         }
       });
@@ -1459,6 +1461,7 @@
 
 						newPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 						newPath.setAttribute('d', path);
+            newPath.setAttribute('id', 'directionPath' + j);
 						newPath.style.fill = 'none';
 
 						if (newPath.classList) {
