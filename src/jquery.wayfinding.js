@@ -1492,7 +1492,9 @@
 
 					});
 
-					animatePath(0);
+					setTimeout(function() {
+  					animatePath(0);
+					}, options.floorChangeAnimationDelay);
 
 					//on switch which floor is displayed reset path svgStrokeDashOffset to minPath and the reanimate
 					//notify animation loop?
