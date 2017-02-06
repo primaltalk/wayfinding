@@ -1121,6 +1121,7 @@
 					animatePath(0);
 				},
 				5000);
+        return;
 			} else if (drawingSegment >= drawing.length) {
 				//finished, stop recursion.
 				return;
