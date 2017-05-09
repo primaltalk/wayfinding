@@ -325,7 +325,7 @@
 			circle.setAttribute('r', '9.834');
 
 			indicator.appendChild(pin);
-			indicator.appendChild(circle);
+			//indicator.appendChild(circle);
 
 			indicator.setAttribute('transform', 'translate(' + x + ' ' + (y - 10 * (height / 125)) + ') scale(' + height / 125 + ')');
 
