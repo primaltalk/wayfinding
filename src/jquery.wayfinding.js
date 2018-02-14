@@ -21,15 +21,15 @@
  */
 
 //  <![CDATA[
+'use strict';
 
 (function (factory) {
   if(typeof module === 'object' && typeof module.exports === 'object') {
-    factory(require('jquery'), window, document);
+    factory(require('jquery'));
   } else {
-    factory(jQuery, window, document);
+    factory(jQuery);
   }
-}(function ($, window, document, undefined) {
-	'use strict';
+}(function ($) {
 
 	/**
 	 * @typedef defaults

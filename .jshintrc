@@ -1,7 +1,9 @@
 {
 	"globals": {
 		"console": true,
-		"jQuery": true,
+    "jQuery": true,
+    "window": true,
+    "document": true,
 		"_": false
 	},
 	"predef": [],
