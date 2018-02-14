@@ -69,6 +69,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "prompt": "^0.2.14"
+    "prompt": "^0.2.14",
+    "jquery": "^3.2.1"
   }
 }
