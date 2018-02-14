@@ -825,14 +825,14 @@
 
 			//clears locationIndicators from the maps
 			$('g.destinationPin', el).remove();
-      
+
 			if (options.showLocation) {
 				end = $('#Doors #' + escapeSelector(endPoint), el);
 
 				//attachPinLocation = $('svg').has('#Rooms a[id="' + escapeSelector(endPoint) + '"]');
         var endMap = el.children().has($('#' + escapeSelector(endPoint)));
         attachPinLocation = $('svg', endMap).children().first();
-        
+
 				if (end.length) {
 					x = (Number(end.attr('x1')) + Number(end.attr('x2'))) / 2;
 					y = (Number(end.attr('y1')) + Number(end.attr('y2'))) / 2;
@@ -892,7 +892,7 @@
 
 		function cleanupSVG(el) { // should only be called once instead of twice if initalize and build for non datastore
 			var svg = $(el).find('svg');
-      
+
       svg.attr('height', '100%')
         .attr('width', '100%')
         .attr('preserveAspectRatio', 'xMinYMin meet');
@@ -970,7 +970,7 @@
 
       $(el).trigger('wayfinding:floorChanged', { mapId: floor });
 
-      $('div', el).hide()
+      $('div', el).hide();
 
       $('#' + floor, el).fadeIn(200, function() {
 
@@ -1118,6 +1118,7 @@
 				// if repeat is set, then delay and rerun display from first.
 				// Don't implement, until we have click to cancel out of this
 				setTimeout(function () {
+          console.info('animatePath(): Animating first path.');
 					animatePath(0);
 				},
 				5000);
@@ -1148,7 +1149,7 @@
 			pathRect = path.getBBox();
 			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset ' + animationDuration + 'ms ease';
 			path.style.strokeDashoffset = '0';
-      
+
 			// If this is the last segment, trigger the 'wayfinding:animationComplete' event
 			// when it finishes drawing.
 			// If we're using zoomToRoute however, don't trigger here, trigger when zoomOut is complete (see below)
@@ -1185,6 +1186,7 @@
 			// Note: This is not tiny path 'segments' which form the lines curving around
 			//       hallways but rather the other 'paths' needed on other floors, if any.
 			setTimeout(function () {
+        console.info('animatePath(): Animating next path.');
 				animatePath(++drawingSegment);
 
 				if (options.zoomToRoute) {
@@ -1494,8 +1496,9 @@
 					});
 
 					setTimeout(function() {
-  					animatePath(0);
-					}, options.floorChangeAnimationDelay);
+            console.info('routeTo(): Animating first path.');
+            animatePath(0);
+          }, options.floorChangeAnimationDelay);
 
 					//on switch which floor is displayed reset path svgStrokeDashOffset to minPath and the reanimate
 					//notify animation loop?
@@ -1658,6 +1661,7 @@
 				 */
 				case 'animatePath':
 					hidePath(obj);
+          console.info('initialize(): Animating first path.');
 					animatePath(0);
 					break;
 

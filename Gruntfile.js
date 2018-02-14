@@ -106,6 +106,7 @@ module.exports = function (grunt) {
 		},
 		uglify: {
 			options: {
+        sourceMap: true,
 				banner: '<%= banner %>'
 			},
 			dist: {
