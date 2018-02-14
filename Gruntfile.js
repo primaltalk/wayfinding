@@ -247,8 +247,19 @@ module.exports = function (grunt) {
 					}
 				}
 			}
-		}
-	});
+		},
+    babel: {
+      options: {
+        sourceMap: true,
+        presets: ['env']
+      },
+      dist: {
+        files: {
+          'dist/jquery.wayfinding.js': 'src/jquery.wayfinding.js'
+        }
+      }
+    }
+  });
 
 	// Making grunt default to force so it won't die on jshint warnings
 	// grunt.option('force', true);
@@ -256,7 +267,5 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-build-lifecycle');
 
 	// Default task.
-	grunt.registerTask('default', ['package']);
-	grunt.registerTask('server', ['connect:livereload', 'watch']);
-	grunt.registerTask('datastore', ['connect:datastore', 'shell:datastore']);
+	grunt.registerTask('default', ['babel']);
 };
