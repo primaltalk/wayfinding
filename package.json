@@ -1,6 +1,6 @@
 {
   "name": "wayfinding",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "jQuery wayfinding plugin",
   "keywords": [
     "jquery-plugin"
@@ -21,7 +21,7 @@
       "type": "MIT"
     }
   ],
-  "main": "dist/jquery.wayfinding.js",
+  "main": "dist/jquery.wayfinding.min.js",
   "directories": {
     "test": "test"
   },
